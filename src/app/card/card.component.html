@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="album">
+    <img [src]="songData.smallThumb.url" alt="Album artwork">
+    <div class=song-info>
+      <div class="artist-name">{{songData.artist.name}}</div>
+      <div class="song-name">{{songData.title}}</div>
+    </div>
+  </div>
+  <div class="information">
+    <div>
+      <div class="title">Difficulty</div>
+      <div class="value">{{songData.difficulty}}</div>
+    </div>
+    <div>
+      <div class="title">Genre</div>
+      <div class="value">Pop</div>
+    </div>
+    <div>
+      <div class="title">Length</div>
+      <div class="value">{{songData.metaData.totalTime | secondsToDuration}}</div>
+    </div>
+  </div>
+</div>

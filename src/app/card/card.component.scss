@@ -1,0 +1,43 @@
+$white: #ffffff;
+$sub-text: #b2b2b2;
+
+.card {
+  display: inline-block;
+
+  .album {
+    position: relative;
+    line-height: 0;
+
+    .song-info {
+      color: $white;
+      position: absolute;
+      bottom: 0;
+      margin: .7em;
+      line-height: normal;
+
+      .artist-name {
+        font-size: .5em;
+      }
+
+      .song-name {
+        font-size: 1.2em;
+      }
+    }
+  }
+
+  .information {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    background: $white;
+    padding: .5em;
+
+    .title {
+      font-weight: bold;
+    }
+
+    .value {
+      color: $sub-text;
+    }
+  }
+}
