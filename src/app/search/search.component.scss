@@ -1,0 +1,24 @@
+.search-container {
+  position: relative;
+  width: 100%;
+
+  input {
+    background: transparent;
+    padding: 0.6em;
+    font-size: 1.1em;
+    border: 0.1em solid #dadbdf;
+    width: 100%;
+    padding-left: 2.2em;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  img {
+    position: absolute;
+    top: 33%;
+    height: 36%;
+    left: 1em;
+  }
+}
