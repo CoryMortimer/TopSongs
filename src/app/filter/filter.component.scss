@@ -1,0 +1,24 @@
+@import '~vars.scss';
+
+div {
+  color: #b8b9ba;
+  font-size: .7em;
+
+  img {
+    height: .7em;
+    height: .6em;
+    padding-left: .3em;
+  }
+
+  span {
+    cursor: pointer;
+    vertical-align: middle;
+    @extend %no-tap-highlight;
+
+    &:nth-child(2) {
+      color: #767778;
+      font-size: 1.6em;
+      margin-left: .2em;
+    }
+  }
+}
