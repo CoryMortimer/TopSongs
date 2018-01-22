@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Song } from '../data_and_interfaces/song.interface';
 @Component({
@@ -6,6 +6,12 @@ import { Song } from '../data_and_interfaces/song.interface';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   @Input() songData: Song;
+
+  ngOnInit() {
+    if (!this.songData.metaData) {
+      this.songData.metaData = <any>{totalTime: '???'};
+    }
+  }
 }

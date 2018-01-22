@@ -7,7 +7,6 @@ import { SongData } from '../data_and_interfaces/song-data';
 import { SecondsToDurationPipe } from '../shared/seconds-to-duration.pipe';
 
 describe('CardComponent', () => {
-  let cardComponent: CardComponent;
   let fixture: ComponentFixture<TestComponent>;
   let artistName: string;
   let songName: string;
@@ -43,5 +42,21 @@ describe('CardComponent', () => {
     expect(difficulty).toBe('Medium');
     expect(genre).toBe('Pop');
     expect(length).toBe('3:34');
+  });
+
+  it('should put question marks if a song does not have a total time', () => {
+    const mockSong = {
+      artist: {
+        name: 'Test name'
+      },
+      title: 'Test title',
+      difficulty: 'Test difficulty',
+      smallThumb: {url: ''}
+    };
+    const cardComponentFixture = TestBed.createComponent(CardComponent);
+    let cardComponent = cardComponentFixture.componentInstance;
+    cardComponent.songData = <any>mockSong;
+    cardComponentFixture.detectChanges();
+    expect<any>(cardComponent.songData.metaData).toEqual({totalTime: '???'});
   });
 });

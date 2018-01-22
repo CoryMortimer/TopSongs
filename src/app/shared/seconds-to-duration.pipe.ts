@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SecondsToDurationPipe implements PipeTransform {
 
-  transform(time: number): string {
-    if (!time && time !== 0) { return '' }
+  transform(time): string {
+    if ((!time && time !== 0) || isNaN(time)) { return String(time) }
     const minutes = Math.floor(time / 60);
     let seconds = '' + Math.round(time % 60);
     seconds = seconds.length < 2 ? '0' + seconds : seconds;
