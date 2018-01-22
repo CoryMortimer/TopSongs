@@ -1,0 +1,37 @@
+@import '~vars.scss';
+
+%flex-basis-40 {
+  flex: 1 0 40%;
+}
+
+.responsive-row {
+  display: flex;
+  flex-flow: row wrap;
+
+  &:first-child {
+    margin: 0 0 2em .4em;
+  }
+
+  div {
+    @extend %flex-basis-40;
+  }
+
+  app-filter {
+    float: right;
+    padding: .6em;
+  }
+
+  app-card {
+    @extend %flex-basis-40;
+    max-width: 15em;
+    padding-bottom: 1em;
+    border: .4em solid $background-color;
+  }
+}
+
+h1 {
+  font-size: .65em;
+  font-weight: 400;
+  color: #a6a7a8;
+  margin: 0 0 0 .7em;
+}
