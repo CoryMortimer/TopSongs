@@ -8,7 +8,7 @@ describe('SecondsToDurationPipe', () => {
   });
 
   it('should return the string version of a false value', () => {
-    expect(pipe.transform(null)).toBe('');;
+    expect(pipe.transform(null)).toBe('null');
   });
 
   it('should return 0:00 for 0', () => {
