@@ -1,16 +1,25 @@
 <div class="responsive-row">
   <div>
-    <app-search></app-search>
+    <app-search (newValue)="searchSongs($event)"></app-search>
   </div>
   <div>
     <app-filter [filterOptions]="filterOptions"></app-filter>
   </div>
 </div>
-<h1>TRENDING</h1>
-<div class="responsive-row">
-  <app-card *ngFor="let index of trending" [songData]="allSongs[index]"></app-card>
+<div *ngIf="!isSearching">
+  <h1>TRENDING</h1>
+  <div class="responsive-row">
+    <app-card *ngFor="let index of trending" [songData]="allSongs[index]"></app-card>
+  </div>
+  <h1>JUST ADDED</h1>
+  <div class="responsive-row">
+    <app-card *ngFor="let index of justAdded" [songData]="allSongs[index]"></app-card>
+  </div>
 </div>
-<h1>JUST ADDED</h1>
-<div class="responsive-row">
-  <app-card *ngFor="let index of justAdded" [songData]="allSongs[index]"></app-card>
+<div *ngIf="isSearching">
+  <h1>SEARCH</h1>
+  <div class="responsive-row">
+    <app-card *ngFor="let index of searchedSongs" [songData]="allSongs[index]"></app-card>
+  </div>
+  <p *ngIf="!searchedSongs.length">No results</p>
 </div>
