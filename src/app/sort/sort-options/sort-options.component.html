@@ -1,0 +1,10 @@
+<div class="container">
+  <button type="button" (click)="close()">
+    <img src="assets/close_icon.png" alt="Close">
+  </button>
+  <ul>
+    <li *ngFor="let sortOption of sortOptions; let i = index;" [ngClass]="{'selected': i === selected}" (click)="selectOption(i)">
+      <img *ngIf="i === selected" src="assets/right_arrow_icon.png" alt="Right selection arrow"> {{sortOption}}
+    </li>
+  </ul>
+</div>

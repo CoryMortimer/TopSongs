@@ -4,37 +4,37 @@ import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import "rxjs/add/observable/of";
 
-import { FilterComponent } from './filter.component';
-import { FilterService } from './filter.service';
+import { SortComponent } from './sort.component';
+import { SortService } from './sort.service';
 
-describe('FilterComponent', () => {
-  let component: FilterComponent;
-  let fixture: ComponentFixture<FilterComponent>;
-  let filterServiceSpy: jasmine.Spy;
+describe('SortComponent', () => {
+  let component: SortComponent;
+  let fixture: ComponentFixture<SortComponent>;
+  let sortServiceSpy: jasmine.Spy;
   let openElement: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FilterComponent ],
-      providers: [ {provide: FilterService, useValue: {openComponent: () => true}}]
+      declarations: [ SortComponent ],
+      providers: [ {provide: SortService, useValue: {openComponent: () => true}}]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FilterComponent);
+    fixture = TestBed.createComponent(SortComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    const filterService = fixture.debugElement.injector.get(FilterService);
-    filterServiceSpy = spyOn(filterService, 'openComponent').and.returnValue(Observable.of(2));
+    const sortService = fixture.debugElement.injector.get(SortService);
+    sortServiceSpy = spyOn(sortService, 'openComponent').and.returnValue(Observable.of(2));
     openElement = fixture.debugElement.queryAll(By.css('span'))[1];
   });
 
   it('should open another component', () => {
     expect(component.option).toBe(0);
-    expect(filterServiceSpy).not.toHaveBeenCalled();
+    expect(sortServiceSpy).not.toHaveBeenCalled();
     openElement.nativeElement.click();
-    expect(filterServiceSpy).toHaveBeenCalled();
+    expect(sortServiceSpy).toHaveBeenCalled();
     expect(component.option).toBe(2);
   });
 });

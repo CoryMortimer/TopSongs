@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 @Injectable()
-export class FilterService {
+export class SortService {
   private componentRef: ComponentRef<{}>
   private componentEvents = new EventEmitter();
 

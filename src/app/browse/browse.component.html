@@ -3,7 +3,7 @@
     <app-search (newValue)="searchSongs($event)"></app-search>
   </div>
   <div>
-    <app-filter [filterOptions]="filterOptions"></app-filter>
+    <app-sort [sortOptions]="sortOptions"></app-sort>
   </div>
 </div>
 <div *ngIf="!isSearching">
