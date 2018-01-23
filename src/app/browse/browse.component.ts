@@ -10,26 +10,33 @@ import { Song } from '../data_and_interfaces/song.interface';
 })
 export class BrowseComponent implements OnInit {
   sortOptions = ['Newest', 'Easiest', 'Hardest'];
-  allSongs: Song[];
-  trending: number[];
-  justAdded: number[];
-  searchedSongs: number[];
+  trending: Song[];
+  justAdded: Song[];
+  searchedSongs = [];
   isSearching = false;
 
   constructor(private browseService: BrowseService) { }
 
   ngOnInit() {
-    this.allSongs = this.browseService.getAllSongs();
-    this.trending = this.browseService.getTrendingIndicies();
-    this.justAdded = this.browseService.getJustAddedIndicies();
+    this.trending = this.browseService.getTrendingSongs();
+    this.justAdded = this.browseService.getJustAddedSongs();
+    this.sortSongs(0);
   }
 
-  searchSongs(searchQuery: string) {
+  searchSongs(searchQuery: string): void {
     if (!searchQuery) {
       this.isSearching = false;
       return;
     }
     this.isSearching = true;
-    this.searchedSongs = this.browseService.getMatchingSongIndicies(searchQuery, this.allSongs);
+    const allSongs = this.trending.concat(this.justAdded);
+    this.searchedSongs = this.browseService.getMatchingSongs(searchQuery, allSongs);
+  }
+
+  sortSongs(sortIndex: number) {
+    const sortOption = this.sortOptions[sortIndex];
+    this.trending = this.browseService.sortByOption(this.trending, sortOption);
+    this.justAdded = this.browseService.sortByOption(this.justAdded, sortOption);
+    this.searchedSongs = this.browseService.sortByOption(this.searchedSongs, sortOption);
   }
 }

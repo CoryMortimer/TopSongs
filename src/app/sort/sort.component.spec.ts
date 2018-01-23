@@ -31,6 +31,7 @@ describe('SortComponent', () => {
   });
 
   it('should open another component', () => {
+    component.optionSelected.subscribe(d => expect(d).toBe(2));
     expect(component.option).toBe(0);
     expect(sortServiceSpy).not.toHaveBeenCalled();
     openElement.nativeElement.click();
