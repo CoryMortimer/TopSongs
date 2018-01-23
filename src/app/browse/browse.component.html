@@ -3,23 +3,23 @@
     <app-search (newValue)="searchSongs($event)"></app-search>
   </div>
   <div>
-    <app-sort [sortOptions]="sortOptions"></app-sort>
+    <app-sort [sortOptions]="sortOptions" (optionSelected)="sortSongs($event)"></app-sort>
   </div>
 </div>
 <div *ngIf="!isSearching">
   <h1>TRENDING</h1>
   <div class="responsive-row">
-    <app-card *ngFor="let index of trending" [songData]="allSongs[index]"></app-card>
+    <app-card *ngFor="let song of trending" [songData]="song"></app-card>
   </div>
   <h1>JUST ADDED</h1>
   <div class="responsive-row">
-    <app-card *ngFor="let index of justAdded" [songData]="allSongs[index]"></app-card>
+    <app-card *ngFor="let song of justAdded" [songData]="song"></app-card>
   </div>
 </div>
 <div *ngIf="isSearching">
   <h1>SEARCH</h1>
   <div class="responsive-row">
-    <app-card *ngFor="let index of searchedSongs" [songData]="allSongs[index]"></app-card>
+    <app-card *ngFor="let song of searchedSongs" [songData]="song"></app-card>
   </div>
   <p *ngIf="!searchedSongs.length">No results</p>
 </div>

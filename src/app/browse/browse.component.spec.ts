@@ -3,29 +3,30 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrowseComponent } from './browse.component';
 import { BrowseService } from './browse.service';
+import { SongData } from '../data_and_interfaces/song-data';
 
 describe('BrowseComponent', () => {
   let component: BrowseComponent;
   let fixture: ComponentFixture<BrowseComponent>;
-  const mockGetAllSongsValue = [{}, {}];
-  const mockGetTrendingIndicies = [0];
-  const mockGetJustAddedIndicies = [1];
+  const mockGetTrendingSongs = [SongData[0]];
+  const mockGetJustAddedSongs = [SongData[1]];
+  let browseService: BrowseService;
 
   class MockBrowseService {
-    getAllSongs() {
-      return mockGetAllSongsValue;
+    getTrendingSongs() {
+      return mockGetTrendingSongs;
     }
 
-    getTrendingIndicies() {
-      return mockGetTrendingIndicies;
+    getJustAddedSongs() {
+      return mockGetJustAddedSongs;
     }
 
-    getJustAddedIndicies() {
-      return mockGetJustAddedIndicies;
+    getMatchingSongs() {
+      return mockGetTrendingSongs;
     }
 
-    getMatchingSongIndicies() {
-      return mockGetTrendingIndicies;
+    sortByOption(songs, option) {
+      return songs;
     }
   }
 
@@ -42,12 +43,12 @@ describe('BrowseComponent', () => {
     fixture = TestBed.createComponent(BrowseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    browseService = fixture.debugElement.injector.get(BrowseService);
   });
 
-  it('should have allSongs, trending, and justAdded populatd', () => {
-    expect(component.allSongs).toEqual(<any>mockGetAllSongsValue);
-    expect(component.trending).toEqual(mockGetTrendingIndicies);
-    expect(component.justAdded).toEqual(mockGetJustAddedIndicies);
+  it('should have trending and justAdded populatd', () => {
+    expect(component.trending).toEqual(mockGetTrendingSongs);
+    expect(component.justAdded).toEqual(mockGetJustAddedSongs);
   });
 
   it('should call searchSongs without an input and have isSearching set to false', () => {
@@ -58,6 +59,12 @@ describe('BrowseComponent', () => {
   it('should call searchSongs with an input and have isSearching set to true', () => {
     component.searchSongs('test');
     expect(component.isSearching).toBe(true);
-    expect(component.searchedSongs).toEqual(mockGetTrendingIndicies);
+    expect(component.searchedSongs).toEqual(mockGetTrendingSongs);
+  });
+
+  it('should call softSongs and call the service 3 times', () => {
+    const sortByOptionSpy = spyOn(browseService, 'sortByOption');
+    component.sortSongs(0);
+    expect(sortByOptionSpy).toHaveBeenCalledTimes(3);
   });
 });
