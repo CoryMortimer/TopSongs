@@ -23,4 +23,19 @@ export class BrowseService {
     }
     return trendingIndicies;
   }
+
+  getMatchingSongIndicies(searchQuery: string, songs: Song[]): number[] {
+    const songIndicies = [];
+    for (let i = 0; i < songs.length; i++) {
+      const song = songs[i];
+      if (this.isStringInCaseInsensitiveString(song.title, searchQuery) || song.artist && this.isStringInCaseInsensitiveString(song.artist.name, searchQuery)) {
+        songIndicies.push(i);
+      }
+    }
+    return songIndicies;
+  }
+
+  private isStringInCaseInsensitiveString(s: string, stringToFind: string) {
+    return s.toLowerCase().indexOf(stringToFind.toLowerCase()) > -1;
+  }
 }

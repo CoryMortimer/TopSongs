@@ -23,6 +23,10 @@ describe('BrowseComponent', () => {
     getJustAddedIndicies() {
       return mockGetJustAddedIndicies;
     }
+
+    getMatchingSongIndicies() {
+      return mockGetTrendingIndicies;
+    }
   }
 
   beforeEach(async(() => {
@@ -44,5 +48,16 @@ describe('BrowseComponent', () => {
     expect(component.allSongs).toEqual(<any>mockGetAllSongsValue);
     expect(component.trending).toEqual(mockGetTrendingIndicies);
     expect(component.justAdded).toEqual(mockGetJustAddedIndicies);
+  });
+
+  it('should call searchSongs without an input and have isSearching set to false', () => {
+    component.searchSongs('');
+    expect(component.isSearching).toBe(false);
+  });
+
+  it('should call searchSongs with an input and have isSearching set to true', () => {
+    component.searchSongs('test');
+    expect(component.isSearching).toBe(true);
+    expect(component.searchedSongs).toEqual(mockGetTrendingIndicies);
   });
 });

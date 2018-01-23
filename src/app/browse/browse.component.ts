@@ -13,6 +13,8 @@ export class BrowseComponent implements OnInit {
   allSongs: Song[];
   trending: number[];
   justAdded: number[];
+  searchedSongs: number[];
+  isSearching = false;
 
   constructor(private browseService: BrowseService) { }
 
@@ -20,5 +22,14 @@ export class BrowseComponent implements OnInit {
     this.allSongs = this.browseService.getAllSongs();
     this.trending = this.browseService.getTrendingIndicies();
     this.justAdded = this.browseService.getJustAddedIndicies();
+  }
+
+  searchSongs(searchQuery: string) {
+    if (!searchQuery) {
+      this.isSearching = false;
+      return;
+    }
+    this.isSearching = true;
+    this.searchedSongs = this.browseService.getMatchingSongIndicies(searchQuery, this.allSongs);
   }
 }
