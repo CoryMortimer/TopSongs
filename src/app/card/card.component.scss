@@ -35,11 +35,7 @@ $sub-text: #b2b2b2;
 
       .artist-name {
         font-size: .5em;
-        font-weight: 100;
-
-        @media screen and (max-width: $medium-screen) {
-          font-size: .1em;
-        }
+        font-weight: 200;
       }
 
       .song-name {
@@ -57,12 +53,8 @@ $sub-text: #b2b2b2;
     flex-flow: row wrap;
     justify-content: space-around;
     background: $white;
-    padding: .9em 0;
-    font-size: .7em;
-
-    @media screen and (max-width: $medium-screen) {
-      font-size: .1em;
-    }
+    padding: 1.2em 0;
+    font-size: .6em;
 
     .value {
       color: $sub-text;
