@@ -9,7 +9,7 @@ import { Song } from '../data_and_interfaces/song.interface';
   styleUrls: ['./browse.component.scss']
 })
 export class BrowseComponent implements OnInit {
-  filterOptions = ['Newest', 'Easiest', 'Hardest'];
+  sortOptions = ['Newest', 'Easiest', 'Hardest'];
   allSongs: Song[];
   trending: number[];
   justAdded: number[];

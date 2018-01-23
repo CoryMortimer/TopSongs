@@ -3,11 +3,11 @@ import { TestBed, inject, async, ComponentFixture } from '@angular/core/testing'
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { By } from '@angular/platform-browser';
 
-import { FilterService } from './filter.service';
+import { SortService } from './sort.service';
 
-describe('FilterService', () => {
+describe('SortService', () => {
   let fixture: ComponentFixture<TestComponent>;
-  let service: FilterService;
+  let service: SortService;
   @Component({
     template: `<div>Main test component</div>`
   })
@@ -27,7 +27,7 @@ describe('FilterService', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, TestEntryComponent],
-      providers: [FilterService]
+      providers: [SortService]
     })
     .overrideModule(BrowserDynamicTestingModule, {
       set: {
@@ -40,7 +40,7 @@ describe('FilterService', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
-    service = fixture.debugElement.injector.get(FilterService);
+    service = fixture.debugElement.injector.get(SortService);
   });
 
   it('should error trying to close nothing that is opened', () => {
